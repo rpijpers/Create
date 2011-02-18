@@ -1,0 +1,78 @@
+body
+{
+	margin: 0;
+	padding: 10px 20px 20px;
+	font-family: Arial;
+	font-size: 12px;
+}
+#map-container
+{
+    padding: 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc #ccc #999 #ccc;
+    -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+    width: 640px;
+	
+	font-family: Arial;
+	
+}
+
+
+#map-container h1
+{
+	font-size: 1.5em;
+	display:inline;
+}
+
+#map-container span.coordinates
+{
+	float: right;
+	margin-right: 15px;
+	font-size: 0.75em;
+}
+
+#map-container span.wikipedia
+{
+	float: right;
+	padding-top: 10px;
+}
+
+#map-container div.content
+{
+	margin-left: 5px;
+	font-style: italic;
+	font-size: 1.00em;
+}
+
+#map-container div.content img
+{
+	padding: 5px;
+	margin-right: 5px;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	filter: alpha(opacity=75);
+	opacity: .75;
+	
+	
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc #ccc #999 #ccc;
+    -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+}
+
+#map-container div.content img:hover
+{
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1.00;
+}
+
+#map
+{
+    width: 640px;
+    height: 600px;
+}

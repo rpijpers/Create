@@ -1,0 +1,75 @@
+/* @group Layout */
+.mod-harbour-boats, #boat-overlay {
+	float: left;
+	height: 400px;
+	margin: 0;
+}
+.mod-harbour-boats {
+	width: 25%;
+}
+#boat-overlay {
+	width: 75%;
+	overflow: hidden;
+}
+#boat-overlay #boat {
+	float: none;
+}
+/* @end */
+
+/* @group Decoration */
+.mod-harbour.split {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #999;
+	border-color: hsla(0, 0%, 50%, .2);
+	overflow: hidden;
+}
+/* @end */
+
+/* @group List */
+.mod-harbour-boats {
+	padding: 0;
+	overflow-x: hidden;
+}
+.mod-harbour-boats li {
+	background: none;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.mod-harbour-boats li a {
+	display: block;
+	height: 32px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 32px;
+	text-indent: 15px;
+}
+.mod-harbour-boats li a:hover, .mod-harbour-boats li a:active, .mod-harbour-boats li.active a {
+	background-color: #777;
+	text-decoration: none;
+	color: white;
+}
+.mod-harbour-boats li:not(.active) a:hover:not(:active) {
+	background-color: #ccc;
+	color: inherit;
+}
+.mod-harbour-boats li a img {
+	margin-right: 5px;
+}
+/* @end */
+
+/* @group Item */
+#boat-overlay .componentheading {
+	margin-left: 10px;
+}
+#boat-overlay .data {
+	height: 225px;
+	min-height: 0;
+	overflow: auto;
+	padding: 3% 5px;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.05, black), color-stop(0.95, black), to(transparent));
+}
+/* @end */

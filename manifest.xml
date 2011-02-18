@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>Create</name>
+	<author>Ronald Pijpers</author>
+	<creationDate>February 2011</creationDate>
+	<copyright>Copyright (C) 2011 Intertron</copyright>
+	<license>GNU GPLv3 - http://www.gnu.org/licenses/gpl.html</license>
+	<authorEmail>rpijpers@intertron.nl</authorEmail>
+	<authorUrl>www.intertron.nl</authorUrl>
+	<version>0.1</version>
+	<description>Nooku component generator. Upload a .xls file to generate a Nooku based component</description>
+
+	<!-- Application/administrator -->
+	<administration>
+		<menu view="components">Create</menu>
+		<files folder="administrator/components/com_create">
+			<folder>controllers</folder>
+			<folder>helper</folder>
+			<folder>install</folder>
+			<folder>sourcefiles</folder>
+			<folder>toolbars</folder>
+            <folder>uploads</folder>
+			<folder>views</folder>
+			<file>create.php</file>
+		</files>
+		<languages>
+			<language tag="en-GB">administrator/language/en-GB/en-GB.com_create.ini</language>
+		</languages> 
+	</administration>
+
+	<!-- Installation -->
+	<installfile>install/install.create.php</installfile>
+	<uninstallfile>install/uninstall.create.php</uninstallfile>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install/install.mysql.utf.sql</file>
+		</sql>
+	</install>
+
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">install/uninstall.mysql.utf.sql</file>
+		</sql>
+	</uninstall>
+
+	<!--  Media -->
+	<media destination="com_create" folder="media/com_create">
+		<folder>css</folder>
+	</media>
+</install>

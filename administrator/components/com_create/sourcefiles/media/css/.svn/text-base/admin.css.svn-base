@@ -1,0 +1,100 @@
+.icon-48-generic {
+	background: transparent url(../images/logo.png) no-repeat !important;
+}
+
+.icon-48-logo {
+	background: transparent url(../images/logo.png) no-repeat !important;
+}
+
+.icon-48-boat {
+	background: transparent url(../images/boat.png) no-repeat !important;
+} 
+
+.icon-48-port {
+   	background: transparent url(../images/port.png) no-repeat !important;
+} 
+
+.icon-48-type {
+  	background: transparent url(../images/type.png) no-repeat !important;
+}
+
+.stats-boats a{
+background: transparent url(../images/icons/stats_boats.png) no-repeat !important;
+vertical-align: top;
+padding-left: 20px;
+padding-top: 1px;
+line-height: 30px;
+}
+
+.stats-ports a {
+background: transparent url(../images/icons/stats_ports.png) no-repeat !important;
+vertical-align: top;
+padding-left: 20px;
+padding-top: 1px;
+line-height: 30px;
+}
+
+.stats-types a {
+background: transparent url(../images/icons/stats_types.png) no-repeat !important;
+vertical-align: top;
+padding-left: 20px;
+padding-top: 1px;
+line-height: 30px;
+}
+
+.stats-draft {
+color: #FF1A00; 
+text-align: center;
+}
+
+.stats-total {
+text-align: center;
+}
+.stats-tip {
+margin-top: 20px;
+font-weight: bold;
+color: #0084D7;
+background: #C3D2E5 url(../images/icons/tip_green.png) no-repeat 80px 3px !important;
+padding-left: 20px;
+padding-top: 1px;
+line-height: 30px;
+}
+
+#stats-graph-info{
+margin-top: 30px;
+text-align: left;
+background-color: #d8d8d8;
+width: 170px;
+float: right;
+padding-left: 7px;
+padding-right: 3px;
+color: #0084D7;
+}
+
+.search-letters-info {
+	text-align: left;
+	width: 25px;
+	padding-left:4px;
+	padding-right:20px;
+	background-color: #f6f6f6;
+	background: url(../images/icons/info_slug.png) no-repeat 0px -1px !important;
+}
+
+#chart_items{
+background-color: transparent;
+float: left; 
+position: relative; top: 0px; left: 0px;
+}
+
+#gauge_status_boats{
+float: right;
+position: relative; top: 20px; left: 0px;
+}
+
+#gauge_status_ports{
+float: right;
+position: relative; top: 20px; left: 0px;
+}
+#gauge_status_ports table {
+	width: 100%;
+}

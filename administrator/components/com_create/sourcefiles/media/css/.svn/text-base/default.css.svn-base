@@ -1,0 +1,75 @@
+  /*new,-> site::com.harbour.helper.paginator.pagination*/
+.harbour-pagination {
+	text-align: left;
+	font-size: 120%;
+	margin: 0;
+	padding: 3px 0;
+	float: right;
+	margin-right: 15px;
+}
+
+.harbour-pagination li {
+	display: inline;
+	margin-right: 5px;
+	font-size: 0.9em;
+}
+
+.harbour-pagination li span {
+	text-decoration: none;
+	border: 1px solid #ccc;
+	background-color: #F6F6F6;
+	padding: 3px;
+}
+
+.harbour-pagination li a {
+	color: #0B55C4;
+	text-decoration: none;
+	border: 1px solid #ccc;
+	background-color: #F6F6F6;
+	padding: 3px;
+}
+
+.harbour-pagination li a:hover, .harbour-pagination li a.selected {
+	background-color: grey;
+	color: #FFF;
+}
+
+.harbour-pagination li a.active {
+	background-color: grey;
+	color: #FFF;
+	font-weight: bold;
+}
+
+div.harbour-search-letters{
+	float: left;
+}
+
+div.harbour-limit{
+	float: right;
+	margin-top: -45px;
+}
+
+div.harbour-select{
+	
+}
+
+td.sectiontableheader {
+	font-weight: bold;
+	border-top: 1px #ccc solid;
+	border-bottom: 1px #ccc solid;
+	line-height: 25px;
+}
+
+/*search-letters info*/
+
+.search-letters-info {
+	text-align: left;
+	width: 25px;
+	padding-left:4px;
+	padding-right:20px;
+	margin:1px;
+	background-color: #f6f6f6;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+	background: url(../images/icons/info_slug.png) no-repeat 0px -1px !important;
+}

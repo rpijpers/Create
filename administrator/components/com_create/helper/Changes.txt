@@ -1,0 +1,30 @@
+
+1. Fixed bug in setRowData where the id of the  row has a value = 0
+2. Fixed bug in delRowData where the id of the row has value = 0
+3. Fixed bug in Safari when the cell value is empty and we try to edit
+it (inline, cell and form edit). The input always has a space instead of empty string
+4. Fixed bug in loading message where we have multiple grid in tabs
+5. Fixed bug in sorting in case of subGrid and datatype=local
+6. To the onSelectAll event is passed array of the grid id's (previous empty array) when 
+we deselect all ids.
+7. Added align property in the pure subGrid. By default all are align left
+8. To the onRightClickRow event we pass two additional parameter rowIndex and columnIndex
+onRightClickRow( id, rowIndex, colIndex)
+9. added autoencode parameter - common for all editing modules. Default false.
+If set to true all the posted data will be html encoded
+10. In form editing is added parameter closeOnEscape, which can be passed
+to every action. By default is false. If set to true the modal is closed when Esc key is
+pressed.
+11. Fixed bug in sortGrid method - passed parameters to sort data function was wrong.
+12. Fixed various typos in filterGrid method.
+13. Fixed bug in searchGrid method. The evens are passed wrong to the $.isFunction function.
+Added grid view mode in form edit. The name of the method is viewGridRow
+14. Added formoptions object where we can set diffrent parameters to reorder the rows and coulns and etc.
+15. Fixed bug in subgrid when the json response for the subgrid is empty
+16. Fixed bug in tree grid - ExpandColClick  parameter is enabled (again)
+17. Added method getFullTreeNode - which return all the children of the given row.
+Currently available only in nested set model
+18. Fixed bug in getNodeDepth for adjacency model
+19 Added option disabled in formatoptions for the checkbox formater.
+Default is true. If set to folse the checkboxes are editable when set with the formater.
+20 . Added Catalan, Bulgarian(1251) and Japanese Translations
