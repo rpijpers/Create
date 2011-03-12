@@ -82,8 +82,8 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	/**
 	 * Create mysql table and import data
 	 * 
-	 * @param   $component The current item
-	 * @return  boolean    Returns true on success, false on failure
+	 * @param   object   The current item
+	 * @return  boolean  Returns true on success, false on failure
 	 */
 	function importExcel ($component)
 	{
@@ -162,8 +162,8 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	/**
 	 * Copy the sourcefiles to the new backend/frontend/media directories and customize them
 	 * 
-	 * @param   $component The current item
-	 * @return  boolean    Returns true on success, false on failure
+	 * @param   object   The current item
+	 * @return  boolean  Returns true on success, false on failure
 	 */
 	function copyfiles ($component)
 	{
@@ -261,7 +261,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	/**
 	 * Create new entry in the component table to register the new component
 	 * 
-	 * @param $component The current item
+	 * @param object  The current item
 	 */
 	function createentry ($component)
 	{
@@ -277,8 +277,8 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	 * Clean input values into save values to use as file/component/view/databasetable
 	 *  names
 	 *  
-	 * @param   $input  A string to clean  
-	 * @return  $result The cleaned string
+	 * @param   string  The inputstring to clean  
+	 * @return  string  The cleaned string
 	 */
 	function clean ($input)
 	{
@@ -291,7 +291,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	/**
 	 * Change the general words into specific words in copied sourcefiles
 	 * 
-	 * @string  $file    Filename of source file
+	 * @string  string   Filename of source file
 	 * @return  boolean  Returns true on success, false on failure
 	 */
 	function changeWords ($file, $component)
