@@ -9,6 +9,10 @@ class ComCreateViewComponentHtml extends ComDefaultViewHtml
 {
 	public function display()
 	{	
+		$examinebutton = KFactory::get('admin::com.create.toolbar.button.examine');
+		KFactory::get('admin::com.create.toolbar.component')
+				->append($examinebutton);
+				
 		$generatebutton = KFactory::get('admin::com.create.toolbar.button.generate');
 		KFactory::get('admin::com.create.toolbar.component')
 				->append($generatebutton);

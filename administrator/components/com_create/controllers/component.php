@@ -46,6 +46,16 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	}
 	
 	/**
+	 * Initial parsing of the Excel file to determine field types
+	 * 
+	 * @param KCommandContext The component object
+	 */
+	function _actionExamine(KCommandContext $context)
+	{
+		echo 'Examine'; exit;
+	}
+	
+	/**
 	 * Main action the generate the new Nooku component based on the uploaded file
 	 * 
 	 * @param   KCommandContext	A command context object
