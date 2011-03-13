@@ -98,6 +98,11 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	{
 		$app = JFactory::getApplication();
 		
+		if (!isset($component->columns)) {
+			$app->enqueueMessage(JText::_('No columns'));
+			return false;			
+		}
+		
 		try {
 			$doc = new CompoundDocument ('utf-8');
 			$doc->parse (file_get_contents (JPATH_COMPONENT_ADMINISTRATOR.DS.'uploads'.DS.$component->filename));
@@ -118,35 +123,32 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 		
 		$tablename = '#__'.$componentname.'_'.$itemsname;
 		
+		// CREATE TABLE
 		$fields = array();			
 		$db = JFactory::getDBO();		
-		$query = 'CREATE TABLE '.$tablename.' (';
+		$query = 'CREATE TABLE `'.$tablename.'` (';
 		$keyfield = $componentname.'_'.$itemname.'_id';
 		$fields[] = $keyfield;
 		$query .= '`'.$keyfield.'` SERIAL,';
-		foreach ($wb->sheets as $sheetName => $sheet) {
-			for ($col = 0; $col < $sheet->cols (); $col ++) {
-				if (!isset ($sheet->cells[0][$col])) continue;
-				$cell = $sheet->cells[0][$col];
-				if (is_null ($cell->value)) {
-					// skip column
-				} else {
-					$columnname = $this->filter->sanitize ($cell->value);
-					$fields[] = $columnname;
-					$query .= '`'.$columnname.'` VARCHAR( 255 ) NOT NULL ,';					
-				}
-			}
-
-			$query .= 'PRIMARY KEY ( `'.$keyfield.'` ) ';
-			$query .= ' );';
+		
+		$col = 0;
+		foreach ($component->columns as $columnname => $columntype) {
+			$query .= '`'.$columnname.'` '.$columntype.' NOT NULL,';
+			$coltypes[$col] = $columntype;
+			$col ++;
+		}
+		$query .= 'PRIMARY KEY ( `'.$keyfield.'` ) ';
+		$query .= ' );';
 	
-			$db->setQuery($query);
-			$db->query();
-
+		$db->setQuery($query);
+		$db->query();
+		
+		// INSERT INTO
+		foreach ($wb->sheets as $sheetName => $sheet) {
 			for ($row = 1; $row < $sheet->rows (); $row ++)
 			{
 				$query = 'INSERT INTO '.$tablename.' VALUES (';
-				$query .= "'',";
+				$query .= "'',";  // autoincrement key
 				for ($col = 0; $col < $sheet->cols (); $col ++)
 				{
 					if (isset ($sheet->cells[$row][$col])) {
@@ -154,6 +156,11 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 					} else {
 						$value = '';
 					}
+					if ($coltypes[$col] == 'DATE' && $value) {
+						$datearr = date_parse_from_format("j/n/y", $value); //needs PHP 5.3
+						$value = $datearr['year'].'-'.$datearr['month'].'-'.$datearr['day'];
+					}
+					
 					$query .= $db->Quote($value).', ';
 				}
 				//remove last comma

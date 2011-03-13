@@ -65,15 +65,15 @@ class ComCreateModelComponents extends ComDefaultModelDefault
 						}
 	
 						if ($isnumeric) {
-							$columns[$columnname] = 'numeric';
+							$columns[$columnname] = 'DECIMAL(10,2)';
 							if ($isint) {
-								$columns[$columnname] = 'int';
+								$columns[$columnname] = 'INT(11)';
 							}
 						} else {
 							if ($isdate) {
-								$columns[$columnname] = 'date';
+								$columns[$columnname] = 'DATE';
 							} else {
-								$columns[$columnname] = 'varchar('.$strlen.')';
+								$columns[$columnname] = 'VARCHAR ('.$strlen.')';
 							}
 						}
 					}
