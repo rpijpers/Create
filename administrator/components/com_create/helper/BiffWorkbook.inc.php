@@ -170,7 +170,8 @@ class BiffWorkbook
 	{
 		if ($value > 1)
 		{
-			$utcValue = round (($value - ($this->_datemode ? 24107 : 25569) + 1) * 86400);
+			//$utcValue = round (($value - ($this->_datemode ? 24107 : 25569) + 1) * 86400);
+			$utcValue = round (($value - ($this->_datemode ? 24107 : 25569)) * 86400);
 			$value = date ($style->format, $utcValue);
 			$raw = $utcValue;
 			return array ($value, $raw);

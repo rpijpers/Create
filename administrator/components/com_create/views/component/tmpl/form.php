@@ -21,11 +21,20 @@
 <label for="itemname_field" class="mainlabel"><?= @text('Item name'); ?></label>
 <input id="itemname_field" type="text" class="text" name="itemname" value="<?= $component->itemname; ?>" /><br />
 
-<label for="filename_field" class="mainlabel"><?php echo JText::_( 'Filename' ); ?>:</label>
+<label for="filename_field" class="mainlabel"><?php echo JText::_( 'Filename' ); ?></label>
 <?php if ($component->filename): ?>
 <span class="value"><?= $component->filename ?></span>
 <?php else : ?>
 <input id="filename_field" type="file" name="filename" size="50" value="" />
+<?php endif ?>
+<br /><br />
+
+<?php if (isset($component->columns)) : ?>
+<label class="mainlabel"><?= @text('Columns'); ?></label><br />
+<?php foreach ($component->columns as $key => $value) : ?>
+<label for="<?= $key ?>_field" class="mainlabel"><?= $key ?></label>
+<input id="<?= $key ?>_field" type="text" class="text" name="<?= $key ?>" value="<?= $value ?>" /><br />
+<?php endforeach ?>
 <?php endif ?>
 </form>
 </div>

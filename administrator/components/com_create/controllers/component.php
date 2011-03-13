@@ -46,16 +46,6 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	}
 	
 	/**
-	 * Initial parsing of the Excel file to determine field types
-	 * 
-	 * @param KCommandContext The component object
-	 */
-	function _actionExamine(KCommandContext $context)
-	{
-		echo 'Examine'; exit;
-	}
-	
-	/**
 	 * Main action the generate the new Nooku component based on the uploaded file
 	 * 
 	 * @param   KCommandContext	A command context object
@@ -84,6 +74,11 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 		$app->enqueueMessage($msg);
 		
 		$result = $this->createentry($component);
+		if ($result == false) {
+			return false;
+		}
+		$msg = 'Registered component';
+		$app->enqueueMessage($msg);
 		
 		$app = JFactory::getApplication();
 		$app->redirect('index.php?option=com_'.$this->clean($component->name));
@@ -105,11 +100,10 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 			$wb = new BiffWorkbook ($doc);
 			$wb->parse ();
 		} catch (Exception $e) {
-			$app->enqueueMessage($e->message);
+			$app->enqueueMessage($e->getMessage());
 			return false;
 		}
 		
-		$filter = KFilter::factory('slug');
 		$componentname = $this->clean($component->name);
 		
 		$itemsname = $component->itemsname ? $component->itemsname : 'items';
@@ -131,7 +125,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 				if (!isset ($sheet->cells[0][$col])) continue;
 				$cell = $sheet->cells[0][$col];
 				if (is_null ($cell->value)) {
-					//
+					// skip column
 				} else {
 					$columnname = $this->clean ($cell->value);
 					$fields[] = $columnname;
@@ -314,8 +308,8 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 		}
 		$body = JFile::read($file);
 		$body = str_replace('component', $this->clean($component->name), $body);	
-		$body = str_replace('items', $component->itemsname, $body);
-		$body = str_replace('item', $component->itemname, $body);
+		$body = str_replace('items', $this->clean($component->itemsname), $body);
+		$body = str_replace('item', $this->clean($component->itemname), $body);
 
 		return JFile::write($file, $body);
 	}
