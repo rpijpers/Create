@@ -14,6 +14,9 @@ class ComCreateModelComponents extends ComDefaultModelDefault
 		// Initial parsing of the Excel file to determine field types		
 		if ($item->filename) {
 			require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'helper'.DS.'BiffWorkbook.inc.php';
+			// set up sanitize filter
+			$config = array('separator' => '');
+			$filter = KFilter::factory('slug', $config);
 			
 			try {
 				$doc = new CompoundDocument ('utf-8');
@@ -32,7 +35,7 @@ class ComCreateModelComponents extends ComDefaultModelDefault
 					if (is_null ($cell->value)) {
 						// skip column
 					} else {
-						$columnname = $this->clean ($cell->value);
+						$columnname = $filter->sanitize ($cell->value);
 						
 						$isnumeric = true;
 						$isint = true;
@@ -81,20 +84,5 @@ class ComCreateModelComponents extends ComDefaultModelDefault
 				
 		$this->_item = $item;
 		return $item;
-	}
-	
-	/**
-	 * Clean input values into save values to use as file/component/view/databasetable
-	 *  names
-	 *  
-	 * @param   string  The inputstring to clean  
-	 * @return  string  The cleaned string
-	 */
-	function clean ($input)
-	{
-		$filter = KFilter::factory('slug');
-		$result = $filter->sanitize($input);
-		$result = str_replace('-', '', $result);
-		return $result;		
 	}
 }

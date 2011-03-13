@@ -57,6 +57,10 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 		$app = JFactory::getApplication();		
 		$component = $this->getModel()->getItem();
 		
+		// set up sanitize filter
+		$config = array('separator' => '');
+		$this->filter = KFilter::factory('slug', $config);
+		
 		//create mysql table and import data
 		$result = $this->importExcel($component);
 		if (!$result) {
@@ -81,7 +85,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 		$app->enqueueMessage($msg);
 		
 		$app = JFactory::getApplication();
-		$app->redirect('index.php?option=com_'.$this->clean($component->name));
+		$app->redirect('index.php?option=com_'.$this->filter->sanitize($component->name));
 	}
 
 	/**
@@ -103,14 +107,14 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 			$app->enqueueMessage($e->getMessage());
 			return false;
 		}
-		
-		$componentname = $this->clean($component->name);
+
+		$componentname = $this->filter->sanitize($component->name);
 		
 		$itemsname = $component->itemsname ? $component->itemsname : 'items';
 		$itemname  = $component->itemname ? $component->itemname : 'item';
 		
-		$itemsname = $this->clean($itemsname);
-		$itemname = $this->clean($itemname);
+		$itemsname = $this->filter->sanitize($itemsname);
+		$itemname = $this->filter->sanitize($itemname);
 		
 		$tablename = '#__'.$componentname.'_'.$itemsname;
 		
@@ -127,7 +131,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 				if (is_null ($cell->value)) {
 					// skip column
 				} else {
-					$columnname = $this->clean ($cell->value);
+					$columnname = $this->filter->sanitize ($cell->value);
 					$fields[] = $columnname;
 					$query .= '`'.$columnname.'` VARCHAR( 255 ) NOT NULL ,';					
 				}
@@ -173,7 +177,7 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	{
 		jimport('joomla.filesystem.file');
 		$app = JFactory::getApplication();
-		$componentname = $this->clean($component->name);
+		$componentname = $this->filter->sanitize($component->name);
 		
 		// backend files
 		$src = JPATH_COMPONENT_ADMINISTRATOR.DS.'sourcefiles'.DS.'administrator';
@@ -269,27 +273,12 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 	 */
 	function createentry ($component)
 	{
-		$componentname = $this->clean($component->name);
+		$componentname = $this->filter->sanitize($component->name);
 		
 		$query = "INSERT INTO `#__components` VALUES('', '".$component->name."', 'option=com_".$componentname."', 0, 0, 'option=com_".$componentname."', '".$component->name."', 'com_".$componentname."', 0, 'js/ThemeOffice/component.png', 0, '', 1);";
 		$db = JFactory::getDBO();		
 		$db->setQuery($query);
 		return $db->query();
-	}
-	
-	/**
-	 * Clean input values into save values to use as file/component/view/databasetable
-	 *  names
-	 *  
-	 * @param   string  The inputstring to clean  
-	 * @return  string  The cleaned string
-	 */
-	function clean ($input)
-	{
-		$filter = KFilter::factory('slug');
-		$result = $filter->sanitize($input);
-		$result = str_replace('-', '', $result);
-		return $result;		
 	}
 	
 	/**
@@ -307,9 +296,9 @@ class ComCreateControllerComponent extends ComDefaultControllerDefault
 			return false;
 		}
 		$body = JFile::read($file);
-		$body = str_replace('component', $this->clean($component->name), $body);	
-		$body = str_replace('items', $this->clean($component->itemsname), $body);
-		$body = str_replace('item', $this->clean($component->itemname), $body);
+		$body = str_replace('component', $this->filter->sanitize($component->name), $body);	
+		$body = str_replace('items', $this->filter->sanitize($component->itemsname), $body);
+		$body = str_replace('item', $this->filter->sanitize($component->itemname), $body);
 
 		return JFile::write($file, $body);
 	}
